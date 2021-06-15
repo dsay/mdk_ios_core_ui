@@ -1,4 +1,5 @@
 import SwiftUI
+import Coordinator
 
 public extension WindowCoordinator {
     
