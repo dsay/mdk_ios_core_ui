@@ -1,3 +1,3 @@
-# MDK_Core_UI
+# mdk_ios_core_ui
 
 A description of this package.
