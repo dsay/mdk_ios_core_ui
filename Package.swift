@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MDK_Core_UI",
+    name: "mdk_ios_core_ui",
     platforms: [.iOS(.v13), .tvOS(.v9), .watchOS(.v2)],
     products: [
         .library(
