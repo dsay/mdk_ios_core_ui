@@ -22,7 +22,6 @@ let package = Package(
 
     ],
     targets: [
-
         .target(
             name: "Coordinator",
             dependencies: [],

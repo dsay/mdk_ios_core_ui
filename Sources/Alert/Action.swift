@@ -12,22 +12,25 @@ extension Alert {
             self.style = style
         }
     }
-    
-    open class DefaultAction: Action {
+}
+
+extension Alert.Action {
+
+    open class Default: Alert.Action {
         
         public init(_ title: String? = nil) {
             super.init(title, style: .default)
         }
     }
     
-    open class DestructiveAction: Action {
+    open class Destructive: Alert.Action {
         
         public init(_ title: String? = nil) {
             super.init(title, style: .destructive)
         }
     }
     
-    open class CancelAction: Action {
+    open class Cancel: Alert.Action {
         
         public init(_ title: String? = nil) {
             super.init(title, style: .cancel)

@@ -30,7 +30,7 @@ open class Alert {
     }
     
     public func actions(_ actions: [String]) -> Alert {
-        _ = actions.compactMap { action(DefaultAction($0)) }
+        _ = actions.compactMap { action(Alert.Action.Default($0)) }
         return self
     }
     
