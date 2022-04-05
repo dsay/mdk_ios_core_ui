@@ -18,7 +18,7 @@ public extension ControllerContainer {
         self.container = container
         self.controller = controller
         self.deepLinkContainer = deepLinkContainer
-        self.deepLinkContainer += self
         self.start()
+        self.deepLinkContainer += self
     }
 }

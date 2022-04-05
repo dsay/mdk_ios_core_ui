@@ -25,8 +25,8 @@ public extension Coordinator {
         self.children = []
         self.container = container
         self.deepLinkContainer = deepLinkContainer
-        self.deepLinkContainer += self
         self.start()
+        self.deepLinkContainer += self
     }
     
     func addChild(_ child: AnyHashable) {
