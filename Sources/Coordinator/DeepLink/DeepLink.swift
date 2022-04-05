@@ -1,13 +1,13 @@
 import Foundation
 
-public class DeepLink: NSObject {
+open class DeepLink: NSObject {
     
     public override init() {
         
     }
 }
 
- @objc public protocol DeepLinkSubscriber {
+@objc public protocol DeepLinkSubscriber {
      
      @discardableResult
      func open(deepLink: DeepLink?) -> Bool
