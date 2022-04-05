@@ -2,7 +2,9 @@ import Foundation
 
 public class DeepLink: NSObject {
     
-    
+    open init() {
+        
+    }
 }
 
  @objc public protocol DeepLinkSubscriber {
@@ -22,6 +24,10 @@ open class DeepLinkContainer {
     }
     
     private let subscribers: NSHashTable<Subscriber> = .weakObjects()
+    
+    open init() {
+        
+    }
     
     func add(subscriber: Subscriber) {
         subscribers.add(subscriber)
