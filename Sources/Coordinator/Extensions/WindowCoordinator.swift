@@ -5,13 +5,20 @@ open class WindowCoordinator: Coordinator {
     public var id: String!
     public var children: Set<AnyHashable>!
     public var container: UIWindow!
-    
+    public var deepLinkContainer: DeepLinkContainer!
+
     required public init() {
-        
+
     }
     
     open func start() {
         
+    }
+    
+    @discardableResult
+    open func open(deepLink: DeepLink? = nil) -> Bool {
+        
+        return false
     }
     
     public func setRoot(viewControler: UIViewController, animated: Bool = false) {

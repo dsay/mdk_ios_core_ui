@@ -5,7 +5,8 @@ open class NavigationCoordinator: Coordinator {
     public var id: String!
     public var children: Set<AnyHashable>! 
     public var container: UINavigationController!
-    
+    public var deepLinkContainer: DeepLinkContainer!
+
     required public init() {
         
     }
@@ -14,6 +15,12 @@ open class NavigationCoordinator: Coordinator {
         
     }
     
+    @discardableResult
+    open func open(deepLink: DeepLink? = nil) -> Bool {
+        
+        return false
+    }
+
     public func push(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
         wrapAnimation(in: {
             if self.container.viewControllers.isEmpty {

@@ -1,17 +1,10 @@
 import Foundation
 
-public protocol CoordinatorRoute {
-    
-}
-
 public protocol CoordinatorController {
     
     associatedtype Input
     associatedtype Output
     associatedtype Dependencies
-    associatedtype Router = CoordinatorRoute
-
-    var router: Router? { get set }
     
     var input: Input! { get set }
     var output: Output? { get set }

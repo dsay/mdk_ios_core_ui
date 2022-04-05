@@ -19,7 +19,6 @@ let package = Package(
             targets: ["Coordinator+SwiftUI"]),
     ],
     dependencies: [
-
     ],
     targets: [
         .target(

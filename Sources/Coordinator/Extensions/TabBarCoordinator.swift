@@ -1,17 +1,24 @@
 import UIKit
 
 open class TabBarCoordinator: Coordinator {
-    
+
     public var id: String!
     public var children: Set<AnyHashable>! 
     public var container: UITabBarController!
-    
+    public var deepLinkContainer: DeepLinkContainer!
+
     required public init() {
         
     }
     
     open func start() {
         
+    }
+    
+    @discardableResult
+    open func open(deepLink: DeepLink? = nil) -> Bool {
+        
+        return false
     }
     
     public func set<T: Coordinator>(_ coordinators: [T], animated: Bool = true, completion: Completion? = nil) where T.Сontainer: UIViewController {

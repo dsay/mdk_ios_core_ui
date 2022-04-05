@@ -6,17 +6,19 @@ public protocol ControllerContainer: Coordinator {
 
     var controller: Controller! { get set }
     
-    init(with container: Сontainer, _ controller: Controller)
+    init(with container: Сontainer, _ controller: Controller, deepLinkContainer: DeepLinkContainer)
 }
 
 public extension ControllerContainer {
         
-    init(with container: Сontainer, _ controller: Controller) {
+    init(with container: Сontainer, _ controller: Controller, deepLinkContainer: DeepLinkContainer) {
         self.init()
         self.id = UUID().uuidString
         self.children = []
         self.container = container
         self.controller = controller
+        self.deepLinkContainer = deepLinkContainer
+        self.deepLinkContainer += self
         self.start()
     }
 }

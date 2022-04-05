@@ -5,13 +5,20 @@ open class ViewControllerCoordinator: Coordinator {
     public var id: String!
     public var children: Set<AnyHashable>!
     public var container: UIViewController!
-    
+    public var deepLinkContainer: DeepLinkContainer!
+
     required public init() {
         
     }
     
     open func start() {
         
+    }
+    
+    @discardableResult
+    open func open(deepLink: DeepLink? = nil) -> Bool {
+        
+        return false
     }
     
     public func addSubview(_ view: UIView) {

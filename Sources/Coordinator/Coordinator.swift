@@ -1,16 +1,17 @@
 import UIKit
 
-public protocol Coordinator: AnyObject, Hashable {
+public protocol Coordinator: Hashable, DeepLinkSubscriber {
     
     associatedtype Сontainer: UIResponder
     
     var id: String! { get set }
     var container: Сontainer! { get set }
     var children: Set<AnyHashable>! { get set }
-    
-    init()
-    init(with container: Сontainer)
+    var deepLinkContainer: DeepLinkContainer! { get set}
 
+    init()
+    init(with container: Сontainer, deepLinkContainer: DeepLinkContainer)
+    
     func start()
 }
 
@@ -18,11 +19,13 @@ public extension Coordinator {
     
     typealias Completion = () -> Void
     
-    init(with container: Сontainer) {
+    init(with container: Сontainer, deepLinkContainer: DeepLinkContainer) {
         self.init()
         self.id = UUID().uuidString
         self.children = []
         self.container = container
+        self.deepLinkContainer = deepLinkContainer
+        self.deepLinkContainer += self
         self.start()
     }
     
@@ -46,7 +49,7 @@ public extension Coordinator {
     }
 }
 
-public extension Coordinator where Сontainer: UIResponder {
+public extension Coordinator {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id

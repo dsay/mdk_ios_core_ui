@@ -7,7 +7,7 @@ final class WindowCoordinatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        coordinator = WindowCoordinator(with: UIWindow())
+        coordinator = WindowCoordinator(with: UIWindow(), deepLinkContainer: .init())
     }
     
     func testInit() {
