@@ -2,7 +2,7 @@ import Foundation
 
 public class DeepLink: NSObject {
     
-    open init() {
+    public override init() {
         
     }
 }
@@ -25,7 +25,7 @@ open class DeepLinkContainer {
     
     private let subscribers: NSHashTable<Subscriber> = .weakObjects()
     
-    open init() {
+    public init() {
         
     }
     
