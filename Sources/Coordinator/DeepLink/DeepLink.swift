@@ -60,10 +60,10 @@ open class DeepLinkContainer {
     }
 }
 
-func += (left: DeepLinkContainer, right: DeepLinkSubscriber) {
+public func += (left: DeepLinkContainer, right: DeepLinkSubscriber) {
     left.add(subscriber: right)
 }
 
-func -= (left: DeepLinkContainer, right: DeepLinkSubscriber) {
+public func -= (left: DeepLinkContainer, right: DeepLinkSubscriber) {
     left.remove(subscriber: right)
 }
