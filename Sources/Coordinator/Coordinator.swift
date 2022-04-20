@@ -10,7 +10,7 @@ public protocol Coordinator: Hashable, DeepLinkSubscriber {
     var deepLinkContainer: DeepLinkContainer! { get set}
 
     init()
-    init(with container: Сontainer, deepLinkContainer: DeepLinkContainer)
+    init(with container: Сontainer, _ deepLinkContainer: DeepLinkContainer)
     
     func start()
 }
@@ -19,7 +19,7 @@ public extension Coordinator {
     
     typealias Completion = () -> Void
     
-    init(with container: Сontainer, deepLinkContainer: DeepLinkContainer) {
+    init(with container: Сontainer, _ deepLinkContainer: DeepLinkContainer) {
         self.init()
         self.id = UUID().uuidString
         self.children = []

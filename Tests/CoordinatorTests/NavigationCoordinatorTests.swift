@@ -11,7 +11,7 @@ final class NavigationCoordinatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        coordinator = NavigationCoordinator(with: UINavigationController(), deepLinkContainer: .init())
+        coordinator = NavigationCoordinator(with: UINavigationController(), .init())
     }
     
     func testNavigationInit() {
