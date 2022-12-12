@@ -1,10 +1,11 @@
 import UIKit
 
-open class ViewControllerCoordinator: Coordinator {
+open class ViewControllerCoordinator<Controller: CoordinatorController>: Coordinator {
     
     public var id: String!
     public var children: Set<AnyHashable>!
     public var container: UIViewController!
+    public var controller: Controller!
     public var deepLinkContainer: DeepLinkContainer!
 
     required public init() {
@@ -21,11 +22,11 @@ open class ViewControllerCoordinator: Coordinator {
         return false
     }
     
-    public func addSubview(_ view: UIView) {
+    open func addSubview(_ view: UIView) {
         container.view.addSubview(view)
     }
     
-    public func add(_ child: UIViewController, frame: CGRect? = nil) {
+    open func add(_ child: UIViewController, frame: CGRect? = nil) {
         container.addChild(child)
         if let frame = frame {
             child.view.frame = frame
@@ -34,13 +35,13 @@ open class ViewControllerCoordinator: Coordinator {
         child.didMove(toParent: container)
     }
     
-    public func remove(_ child: UIViewController) {
+    open func remove(_ child: UIViewController) {
         child.willMove(toParent: nil)
         child.view.removeFromSuperview()
         child.removeFromParent()
     }
     
-    public func present(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
+    open func present(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
         container.present(viewController, animated: animated, completion: completion)
     }
 }

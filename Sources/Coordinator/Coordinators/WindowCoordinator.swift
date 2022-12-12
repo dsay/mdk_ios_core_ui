@@ -1,10 +1,11 @@
 import UIKit
 
-open class WindowCoordinator: Coordinator {
+open class WindowCoordinator<Controller: CoordinatorController>: Coordinator {
     
     public var id: String!
     public var children: Set<AnyHashable>!
     public var container: UIWindow!
+    public var controller: Controller!
     public var deepLinkContainer: DeepLinkContainer!
 
     required public init() {
@@ -17,11 +18,10 @@ open class WindowCoordinator: Coordinator {
     
     @discardableResult
     open func open(deepLink: DeepLink? = nil) -> Bool {
-        
         return false
     }
     
-    public func setRoot(viewControler: UIViewController, animated: Bool = false) {
+    open func setRoot(viewControler: UIViewController, animated: Bool = false) {
         if let snapshot = container.rootViewController?.view.snapshotView(afterScreenUpdates: true), animated {
             viewControler.view.addSubview(snapshot)
             container.rootViewController = viewControler
@@ -40,21 +40,21 @@ open class WindowCoordinator: Coordinator {
         }
     }
     
-    public func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UIViewController {
+    open func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UIViewController {
         removeChildren()
         addChild(coordinator)
         
         setRoot(viewControler: coordinator.container, animated: animated)
     }
     
-    public func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UINavigationController {
+    open func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UINavigationController {
         removeChildren()
         addChild(coordinator)
         
         setRoot(viewControler: coordinator.container, animated: animated)
     }
     
-    public func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UITabBarController {
+    open func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UITabBarController {
         removeChildren()
         addChild(coordinator)
         

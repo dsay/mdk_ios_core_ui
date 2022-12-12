@@ -1,10 +1,11 @@
 import UIKit
 
-open class NavigationCoordinator: Coordinator {
+open class NavigationCoordinator<Controller: CoordinatorController>: Coordinator {
     
     public var id: String!
     public var children: Set<AnyHashable>! 
     public var container: UINavigationController!
+    public var controller: Controller!
     public var deepLinkContainer: DeepLinkContainer!
 
     required public init() {
@@ -17,11 +18,10 @@ open class NavigationCoordinator: Coordinator {
     
     @discardableResult
     open func open(deepLink: DeepLink? = nil) -> Bool {
-        
         return false
     }
 
-    public func push(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
+    open func push(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
         wrapAnimation(in: {
             if self.container.viewControllers.isEmpty {
                 self.container.setViewControllers([viewController], animated: false)
@@ -31,13 +31,13 @@ open class NavigationCoordinator: Coordinator {
         }, completion: completion)
     }
     
-    public func pop(animated: Bool = true, completion: Completion? = nil) {
+    open func pop(animated: Bool = true, completion: Completion? = nil) {
         wrapAnimation(in: {
             self.container.popViewController(animated: animated)
         }, completion: completion)
     }
     
-    public func pop(viewController ofClass: AnyClass, animated: Bool = true, completion: Completion? = nil) {
+    open func pop(viewController ofClass: AnyClass, animated: Bool = true, completion: Completion? = nil) {
         wrapAnimation(in: {
             if let vc = self.container.viewControllers.filter({$0.isKind(of: ofClass)}).last {
                 self.container.popToViewController(vc, animated: animated)
@@ -45,7 +45,7 @@ open class NavigationCoordinator: Coordinator {
         }, completion: completion)
     }
     
-    public func pop(_ index: Int, animated: Bool = true, completion: Completion? = nil) {
+    open func pop(_ index: Int, animated: Bool = true, completion: Completion? = nil) {
         wrapAnimation(in: {
             if self.container.viewControllers.count > index {
                 let vc = self.container.viewControllers[index]
@@ -54,13 +54,13 @@ open class NavigationCoordinator: Coordinator {
         }, completion: completion)
     }
     
-    public func popToRoot(animated: Bool = true, completion: Completion? = nil) {
+    open func popToRoot(animated: Bool = true, completion: Completion? = nil) {
         wrapAnimation(in: {
             self.container.popToRootViewController(animated: animated)
         }, completion: completion)
     }
     
-    public func set(_ viewControllers: [UIViewController],
+    open func set(_ viewControllers: [UIViewController],
                     animated: Bool = true,
                     completion: Completion? = nil)
     {
@@ -69,18 +69,18 @@ open class NavigationCoordinator: Coordinator {
         }, completion: completion)
     }
     
-    public func present(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
+    open func present(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
         container.present(viewController, animated: animated, completion: completion)
     }
     
-    public func dismiss(animated: Bool = true, completion: Completion? = nil) {
+    open func dismiss(animated: Bool = true, completion: Completion? = nil) {
         guard container.presentedViewController != nil else {
             return
         }
         container.dismiss(animated: animated, completion: completion)
     }
     
-    public func add(_ viewControllers: [UIViewController],
+    open func add(_ viewControllers: [UIViewController],
                     animated: Bool = true,
                     completion: Completion? = nil)
     {
@@ -90,7 +90,7 @@ open class NavigationCoordinator: Coordinator {
         }, completion: completion)
     }
     
-    public func pop(to viewController: UIViewController,
+    open func pop(to viewController: UIViewController,
                     animated: Bool = true,
                     completion: Completion? = nil)
     {
@@ -99,7 +99,7 @@ open class NavigationCoordinator: Coordinator {
         }, completion: completion)
     }
     
-    public func replaceViewControllers(after: UIViewController,
+    open func replaceViewControllers(after: UIViewController,
                                        with viewControllers: [UIViewController],
                                        animated: Bool = true,
                                        completion: Completion? = nil)
