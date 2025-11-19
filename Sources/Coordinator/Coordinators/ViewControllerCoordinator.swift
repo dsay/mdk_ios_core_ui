@@ -1,25 +1,18 @@
 import UIKit
 
-open class ViewControllerCoordinator<Controller: CoordinatorController>: Coordinator {
+@MainActor
+open class ViewControllerCoordinator: Coordinator {
     
-    public var id: String!
-    public var children: Set<AnyHashable>!
-    public var container: UIViewController!
-    public var controller: Controller!
-    public var deepLinkContainer: DeepLinkContainer!
+    public var id: String = UUID().uuidString
+    public var children: Set<AnyHashable> = []
+    public var container: UIViewController
 
-    required public init() {
-        
+    required public init(container: UIViewController) {
+        self.container = container
     }
     
     open func start() {
         
-    }
-    
-    @discardableResult
-    open func open(deepLink: DeepLink? = nil) -> Bool {
-        
-        return false
     }
     
     open func addSubview(_ view: UIView) {
@@ -42,6 +35,14 @@ open class ViewControllerCoordinator<Controller: CoordinatorController>: Coordin
     }
     
     open func present(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
-        container.present(viewController, animated: animated, completion: completion)
+        self.container.present(viewController, animated: animated, completion: completion)
+    }
+    
+    open func dismiss(animated: Bool = true, completion: Completion? = nil) {
+        if let presented = self.container.presentedViewController {
+            presented.dismiss(animated: animated, completion: completion)
+        } else {
+            self.container.dismiss(animated: animated, completion: completion)
+        }
     }
 }

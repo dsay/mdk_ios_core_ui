@@ -2,29 +2,20 @@ import UIKit
 
 public extension Coordinator {
     
-    typealias Completion = () -> Void
-    
-    init(with container: Сontainer, _ controller: Controller, _ deepLinkContainer: DeepLinkContainer) {
-        self.init()
-        self.id = UUID().uuidString
-        self.children = []
-        self.container = container
-        self.controller = controller
-        self.deepLinkContainer = deepLinkContainer
-        self.start()
-        self.deepLinkContainer += self
+    func addChildren(_ children: [AnyHashable]) {
+        self.children = Set(children)
     }
     
     func addChild(_ child: AnyHashable) {
-        children.insert(child)
+        self.children.insert(child)
     }
     
     func removeChild(_ child: AnyHashable) {
-        children.remove(child)
+        self.children.remove(child)
     }
     
     func removeChildren() {
-        children.removeAll()
+        self.children.removeAll()
     }
     
     func wrapAnimation(in action: Completion, completion: Completion? = nil) {
@@ -33,9 +24,6 @@ public extension Coordinator {
         action()
         CATransaction.commit()
     }
-}
-
-public extension Coordinator {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id

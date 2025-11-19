@@ -1,24 +1,18 @@
 import UIKit
 
-open class WindowCoordinator<Controller: CoordinatorController>: Coordinator {
+@MainActor
+open class WindowCoordinator: Coordinator {
     
-    public var id: String!
-    public var children: Set<AnyHashable>!
-    public var container: UIWindow!
-    public var controller: Controller!
-    public var deepLinkContainer: DeepLinkContainer!
+    public var id: String = UUID().uuidString
+    public var children: Set<AnyHashable> = []
+    public var container: UIWindow
 
-    required public init() {
-
+    required public init(container: UIWindow) {
+        self.container = container
     }
     
     open func start() {
         
-    }
-    
-    @discardableResult
-    open func open(deepLink: DeepLink? = nil) -> Bool {
-        return false
     }
     
     open func setRoot(viewControler: UIViewController, animated: Bool = false) {
@@ -43,6 +37,7 @@ open class WindowCoordinator<Controller: CoordinatorController>: Coordinator {
     open func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UIViewController {
         removeChildren()
         addChild(coordinator)
+        coordinator.start()
         
         setRoot(viewControler: coordinator.container, animated: animated)
     }
@@ -50,14 +45,36 @@ open class WindowCoordinator<Controller: CoordinatorController>: Coordinator {
     open func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UINavigationController {
         removeChildren()
         addChild(coordinator)
-        
+        coordinator.start()
+
         setRoot(viewControler: coordinator.container, animated: animated)
     }
     
     open func setRoot<C: Coordinator>(_ coordinator: C, animated: Bool = true) where C.Сontainer == UITabBarController {
         removeChildren()
         addChild(coordinator)
-        
+        coordinator.start()
+
         setRoot(viewControler: coordinator.container, animated: animated)
+    }
+    
+    open func present(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
+        guard let root = self.container.rootViewController else {
+            return
+        }
+        
+        root.present(viewController, animated: animated, completion: completion)
+    }
+    
+    open func dismiss(animated: Bool = true, completion: Completion? = nil) {
+        guard let root = self.container.rootViewController else {
+            return
+        }
+        
+        if let presented = root.presentedViewController {
+            presented.dismiss(animated: animated, completion: completion)
+        } else {
+            root.dismiss(animated: animated, completion: completion)
+        }
     }
 }

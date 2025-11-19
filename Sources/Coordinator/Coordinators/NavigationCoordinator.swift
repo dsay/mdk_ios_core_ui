@@ -1,24 +1,18 @@
 import UIKit
 
-open class NavigationCoordinator<Controller: CoordinatorController>: Coordinator {
+@MainActor
+open class NavigationCoordinator: Coordinator {
     
-    public var id: String!
-    public var children: Set<AnyHashable>! 
-    public var container: UINavigationController!
-    public var controller: Controller!
-    public var deepLinkContainer: DeepLinkContainer!
+    public var id: String = UUID().uuidString
+    public var children: Set<AnyHashable> = []
+    public var container: UINavigationController
 
-    required public init() {
-        
+    required public init(container: UINavigationController) {
+        self.container = container
     }
     
     open func start() {
         
-    }
-    
-    @discardableResult
-    open func open(deepLink: DeepLink? = nil) -> Bool {
-        return false
     }
 
     open func push(_ viewController: UIViewController, animated: Bool = true, completion: Completion? = nil) {
@@ -74,10 +68,11 @@ open class NavigationCoordinator<Controller: CoordinatorController>: Coordinator
     }
     
     open func dismiss(animated: Bool = true, completion: Completion? = nil) {
-        guard container.presentedViewController != nil else {
-            return
+        if let presented = self.container.presentedViewController {
+            presented.dismiss(animated: animated, completion: completion)
+        } else {
+            self.container.dismiss(animated: animated, completion: completion)
         }
-        container.dismiss(animated: animated, completion: completion)
     }
     
     open func add(_ viewControllers: [UIViewController],
@@ -124,4 +119,22 @@ open class NavigationCoordinator<Controller: CoordinatorController>: Coordinator
         set(stack, animated: animated, completion: completion)
     }
     
+    open func addSubview(_ view: UIView) {
+        container.view.addSubview(view)
+    }
+    
+    open func add(_ child: UIViewController, frame: CGRect? = nil) {
+        container.addChild(child)
+        if let frame = frame {
+            child.view.frame = frame
+        }
+        container.view.addSubview(child.view)
+        child.didMove(toParent: container)
+    }
+    
+    open func remove(_ child: UIViewController) {
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
+    }
 }

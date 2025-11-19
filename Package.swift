@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "mdk_ios_core_ui",
-    platforms: [.iOS(.v13), .tvOS(.v9), .watchOS(.v2)],
+    platforms: [.iOS(.v14)],
     products: [
         .library(
             name: "Alert",
@@ -13,10 +13,6 @@ let package = Package(
         .library(
             name: "Coordinator",
             targets: ["Coordinator"]),
-        
-        .library(
-            name: "Coordinator+SwiftUI",
-            targets: ["Coordinator+SwiftUI"]),
     ],
     dependencies: [
     ],
@@ -31,12 +27,6 @@ let package = Package(
             name: "Alert",
             dependencies: [],
             path: "Sources/Alert"
-        ),
-        
-        .target(
-            name: "Coordinator+SwiftUI",
-            dependencies: [.target(name: "Coordinator")],
-            path: "Sources/Coordinator+SwiftUI"
         ),
         
         .testTarget(

@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 open class Alert {
 
     public typealias Completion = () -> Void

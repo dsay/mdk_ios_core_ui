@@ -2,6 +2,7 @@ import UIKit
 
 extension Alert {
     
+    @MainActor
     open class Configurator {
         
         var title: String?

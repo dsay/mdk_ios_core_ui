@@ -1,36 +1,34 @@
 import UIKit
 
-open class TabBarCoordinator<Controller: CoordinatorController>: Coordinator {
+@MainActor
+open class TabBarCoordinator: Coordinator {
 
-    public var id: String!
-    public var children: Set<AnyHashable>! 
-    public var container: UITabBarController!
-    public var controller: Controller!
-    public var deepLinkContainer: DeepLinkContainer!
+    public var id: String = UUID().uuidString
+    public var children: Set<AnyHashable> = []
+    public var container: UITabBarController
 
-    required public init() {
-        
+    required public init(container: UITabBarController) {
+        self.container = container
     }
     
     open func start() {
         
     }
     
-    @discardableResult
-    open func open(deepLink: DeepLink? = nil) -> Bool {
-        return false
-    }
-    
     open func set<T: Coordinator>(_ coordinators: [T], animated: Bool = true, completion: Completion? = nil) where T.Сontainer: UIViewController {
-        coordinators.forEach { coordinator in
-            addChild(coordinator)
+        removeChildren()
+        coordinators.forEach {
+            addChild($0)
+            $0.start()
         }
         set(coordinators.compactMap { $0.container }, animated: animated, completion: completion)
     }
     
     open func set<T: Coordinator>(_ coordinators: [T], animated: Bool = true, completion: Completion? = nil) where T.Сontainer: UINavigationController {
-        coordinators.forEach { coordinator in
-            addChild(coordinator)
+        removeChildren()
+        coordinators.forEach {
+            addChild($0)
+            $0.start()
         }
         set(coordinators.compactMap { $0.container }, animated: animated, completion: completion)
     }
