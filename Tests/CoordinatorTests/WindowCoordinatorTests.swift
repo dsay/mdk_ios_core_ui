@@ -1,13 +1,14 @@
 import XCTest
 @testable import Coordinator
 
+@MainActor
 final class WindowCoordinatorTests: XCTestCase {
     
     var coordinator: WindowCoordinator!
 
     override func setUp() {
         super.setUp()
-        coordinator = WindowCoordinator(with: UIWindow(), .init())
+        coordinator = WindowCoordinator(container: UIWindow())
     }
     
     func testInit() {

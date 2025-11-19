@@ -5,13 +5,14 @@ class ViewController: UIViewController {
     
 }
 
+@MainActor
 final class NavigationCoordinatorTests: XCTestCase {
     
     var coordinator: NavigationCoordinator!
 
     override func setUp() {
         super.setUp()
-        coordinator = NavigationCoordinator(with: UINavigationController(), .init())
+        coordinator = NavigationCoordinator(container: UINavigationController())
     }
     
     func testNavigationInit() {

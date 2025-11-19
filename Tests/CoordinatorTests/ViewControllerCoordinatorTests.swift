@@ -1,13 +1,14 @@
 import XCTest
 @testable import Coordinator
 
+@MainActor
 final class ViewControllerCoordinatorTests: XCTestCase {
     
     var coordinator: ViewControllerCoordinator!
 
     override func setUp() {
         super.setUp()
-        coordinator = ViewControllerCoordinator(with: UIViewController(), .init())
+        coordinator = ViewControllerCoordinator(container: UIViewController())
     }
     
     func testInit() {

@@ -3,23 +3,16 @@ import XCTest
 
 class TestCoordinator: Coordinator {
 
-    public var id: String! = UUID().uuidString
-    public var children: Set<AnyHashable>! = []
-    public var container: UIView!
-    public var deepLinkContainer: DeepLinkContainer!
+    public var id: String = UUID().uuidString
+    public var children: Set<AnyHashable> = []
+    public var container: UIView
 
-    required public init() {
-        
+    required public init(with view: UIView) {
+        self.container = view
     }
     
     open func start() {
         
-    }
-    
-    @discardableResult
-    open func open(deepLink: DeepLink? = nil) -> Bool {
-        
-        return false
     }
 }
 
@@ -29,7 +22,7 @@ final class CoordinatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        coordinator = TestCoordinator(with: UIView(), .init())
+        coordinator = TestCoordinator(with: UIView())
     }
     
     func testCoordinatorInit() {
@@ -37,7 +30,7 @@ final class CoordinatorTests: XCTestCase {
     }
     
     func testCoordinatorAddChild() {
-        let child = TestCoordinator(with: UIView(), .init())
+        let child = TestCoordinator(with: UIView())
         
         coordinator.addChild(child)
         
@@ -45,7 +38,7 @@ final class CoordinatorTests: XCTestCase {
     }
     
     func testCoordinatorRemoveChild() {
-        let child = TestCoordinator(with: UIView(), .init())
+        let child = TestCoordinator(with: UIView())
 
         coordinator.addChild(child)
         coordinator.removeChildren()
@@ -54,8 +47,8 @@ final class CoordinatorTests: XCTestCase {
     }
     
     func testCoordinatorRemoveAllChild() {
-        let child = TestCoordinator(with: UIView(), .init())
-        let child1 = TestCoordinator(with: UIView(), .init())
+        let child = TestCoordinator(with: UIView())
+        let child1 = TestCoordinator(with: UIView())
 
         coordinator.addChild(child)
         coordinator.addChild(child1)

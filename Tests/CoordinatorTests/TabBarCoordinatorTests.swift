@@ -1,13 +1,14 @@
 import XCTest
 @testable import Coordinator
 
+@MainActor
 final class TabBarCoordinatorTests: XCTestCase {
     
     var coordinator: TabBarCoordinator!
 
     override func setUp() {
         super.setUp()
-        coordinator = TabBarCoordinator(with: UITabBarController(), .init())
+        coordinator = TabBarCoordinator(container: UITabBarController())
     }
     
     func testInit() {
