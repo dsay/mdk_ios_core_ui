@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2C0215812ECCA86F008DAB94 /* Alert in Frameworks */ = {isa = PBXBuildFile; productRef = 2C0215802ECCA86F008DAB94 /* Alert */; };
 		2C0215832ECCA86F008DAB94 /* Coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 2C0215822ECCA86F008DAB94 /* Coordinator */; };
+		2C6721202EE967E000F61B0E /* Alert in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67211F2EE967E000F61B0E /* Alert */; };
+		2C6721222EE967E000F61B0E /* Coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 2C6721212EE967E000F61B0E /* Coordinator */; };
+		2C6721262EE96BBD00F61B0E /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2C6721252EE96BBD00F61B0E /* Utils */; };
 		2CC1522A2ECCBE9900530645 /* Alert in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC152292ECCBE9900530645 /* Alert */; };
 		2CC1522C2ECCBE9900530645 /* Coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC1522B2ECCBE9900530645 /* Coordinator */; };
 /* End PBXBuildFile section */
@@ -44,8 +47,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CC1522A2ECCBE9900530645 /* Alert in Frameworks */,
+				2C6721202EE967E000F61B0E /* Alert in Frameworks */,
 				2C0215812ECCA86F008DAB94 /* Alert in Frameworks */,
+				2C6721222EE967E000F61B0E /* Coordinator in Frameworks */,
 				2C0215832ECCA86F008DAB94 /* Coordinator in Frameworks */,
+				2C6721262EE96BBD00F61B0E /* Utils in Frameworks */,
 				2CC1522C2ECCBE9900530645 /* Coordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				2C0215692ECCA77C008DAB94 /* Demo */,
+				2C67211B2EE965A600F61B0E /* Frameworks */,
 				2C0215682ECCA77C008DAB94 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +74,13 @@
 				2C0215672ECCA77C008DAB94 /* Demo.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2C67211B2EE965A600F61B0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,6 +107,9 @@
 				2C0215822ECCA86F008DAB94 /* Coordinator */,
 				2CC152292ECCBE9900530645 /* Alert */,
 				2CC1522B2ECCBE9900530645 /* Coordinator */,
+				2C67211F2EE967E000F61B0E /* Alert */,
+				2C6721212EE967E000F61B0E /* Coordinator */,
+				2C6721252EE96BBD00F61B0E /* Utils */,
 			);
 			productName = Demo;
 			productReference = 2C0215672ECCA77C008DAB94 /* Demo.app */;
@@ -123,7 +140,7 @@
 			mainGroup = 2C02155E2ECCA77C008DAB94;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				2CC152282ECCBE9900530645 /* XCLocalSwiftPackageReference "../../mdk_ios_core_ui" */,
+				2C67211E2EE967E000F61B0E /* XCLocalSwiftPackageReference "../../mdk_ios_core_ui" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2C0215682ECCA77C008DAB94 /* Products */;
@@ -369,7 +386,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		2CC152282ECCBE9900530645 /* XCLocalSwiftPackageReference "../../mdk_ios_core_ui" */ = {
+		2C67211E2EE967E000F61B0E /* XCLocalSwiftPackageReference "../../mdk_ios_core_ui" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../mdk_ios_core_ui;
 		};
@@ -383,6 +400,19 @@
 		2C0215822ECCA86F008DAB94 /* Coordinator */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Coordinator;
+		};
+		2C67211F2EE967E000F61B0E /* Alert */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Alert;
+		};
+		2C6721212EE967E000F61B0E /* Coordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Coordinator;
+		};
+		2C6721252EE96BBD00F61B0E /* Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C67211E2EE967E000F61B0E /* XCLocalSwiftPackageReference "../../mdk_ios_core_ui" */;
+			productName = Utils;
 		};
 		2CC152292ECCBE9900530645 /* Alert */ = {
 			isa = XCSwiftPackageProductDependency;

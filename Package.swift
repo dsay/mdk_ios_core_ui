@@ -9,10 +9,12 @@ let package = Package(
         .library(
             name: "Alert",
             targets: ["Alert"]),
-        
         .library(
             name: "Coordinator",
             targets: ["Coordinator"]),
+        .library(
+            name: "Utils",
+            targets: ["Utils"]),
     ],
     dependencies: [
     ],
@@ -23,20 +25,31 @@ let package = Package(
             path: "Sources/Coordinator"
         ),
         
-        .target(
-            name: "Alert",
-            dependencies: [],
-            path: "Sources/Alert"
-        ),
+            .target(
+                name: "Alert",
+                dependencies: [],
+                path: "Sources/Alert"
+            ),
         
-        .testTarget(
-            name: "AlertTests",
-            dependencies: ["Alert"]
-        ),
+            .target(
+                name: "Utils",
+                dependencies: [],
+                path: "Sources/Utils"
+            ),
         
-        .testTarget(
-            name: "CoordinatorTests",
-            dependencies: ["Coordinator"]
-        ),
+            .testTarget(
+                name: "AlertTests",
+                dependencies: ["Alert"]
+            ),
+        
+            .testTarget(
+                name: "CoordinatorTests",
+                dependencies: ["Coordinator"]
+            ),
+        
+            .testTarget(
+                name: "UtilsTests",
+                dependencies: ["Utils"]
+            ),
     ]
 )
